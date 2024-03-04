@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('title');
             $table->string('name');
             $table->string('image');
+            $table->unsignedBigInteger('category_id'); //assigning a foreign key
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');  // defining a foreign key in orders table//Assigning foreign Key             $table->timestamps();
         });
     }
 
