@@ -25,7 +25,7 @@
             <a href="{{ route('news.create') }}" class="btn btn-success mt-3">Add News </a>
         </div>
 
-        <table class="table mt-1">
+        <table class="table mt-1 ms-5">
             <thead>
                 <tr>
                     <th>S No.</th>
@@ -37,6 +37,28 @@
 
                 </tr>
             </thead>
+            <tbody>
+                @foreach ($news as $i => $article)
+                    <tr>
+                        <td>{{ $i + 1 }}</td>
+                        <td>{{ $article->title }}</td>
+                        <td>{{ $article->description }}</td>
+                        <td><img src="{{ $article->getFirstMediaUrl('news') }}" class="square" width="50"
+                                height="40" alt="Image" width="100"></td>
+                        <td></td>
+                        <td>
+                            <a href="{{ route('news.edit', $article->id) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('news.destroy', $article->id) }}" method="post"
+                                style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+
         </table>
     </div>
 </body>

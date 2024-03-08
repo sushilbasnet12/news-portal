@@ -22,19 +22,43 @@
 
     <div class="container-one">
         <div class="text-right">
-            <a href="{{ route('category.create') }}" class="btn btn-success mt-3 new">Add Category </a>
+            <a href="{{ route('category.create') }}" class="btn btn-success mt-3">Add News </a>
         </div>
 
-        <table class="table mt-1">
+        <table class="table mt-1 ms-5">
             <thead>
                 <tr>
                     <th>S No.</th>
-                    <th>Title</th>
+                    <th>Category</th>
                     <th>Description</th>
                     <th>Image</th>
                     <th>Action</th>
                 </tr>
             </thead>
+
+            <tbody>
+                @foreach ($categories as $i => $category)
+                    <tr>
+                        <td>{{ $i + 1 }}</td>
+                        <td>{{ $category->category_name }}</td>
+                        <td>{{ $category->description }}</td>
+                        <td><img src="{{ $category->getFirstMediaUrl('categories') }}" class="square" width="50"
+                                height="40" alt="Category Image" width="100"></td>
+                        <td>
+                            <!-- Add your action buttons here, e.g., edit and delete -->
+                            <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('category.destroy', $category->id) }}" method="post"
+                                style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+
+
         </table>
     </div>
 </body>

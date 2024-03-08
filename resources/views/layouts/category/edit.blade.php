@@ -19,21 +19,24 @@
         <div class="row justify-content-center">
             <div class="col-sm-8 mt-5">
                 <div class="card p-3">
-                    <form method="POST" action="{{ route('category.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('category.update', $category->id) }}"
+                        enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label> Category Name </label>
                             <input type="text" name="category_name" class="form-control"
-                                value="{{ old('category_name') }}"><br>
+                                value="{{ $category->category_name }}"><br>
 
                             <label> Description </label>
                             <input type="text" name="description" class="form-control" rows="4"
-                                value="{{ old('description') }}"><br>
+                                value="{{ $category->description }}"><br>
 
                             <label> Image </label>
-                            <input type="file" name="image" class="form-control" value="{{ old('image') }}"><br>
+                            <input type="file" name="image" class="form-control"
+                                value="{{ $category->image }}"><br>
 
-                            <button type="submit" class="btn btn-dark">Submit</button>
+                            <button type="submit" class="btn btn-dark">Update</button>
 
                             <a href="{{ route('category.index') }}" class="btn btn-danger">Cancel</a>
                         </div>
