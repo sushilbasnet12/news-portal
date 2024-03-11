@@ -34,15 +34,17 @@
                             <br>
 
                             <label>Category</label>
+                            <label>Category</label>
                             <select
                                 style="width: 100%;padding: 8px;background:rgb(241, 241, 241);border: solid 1px rgb(255, 255, 255);"
                                 name="category_id" id="">
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                        @if ($news->category_id == $category->id) selected @endif>{{ $category->category_name }}
-                                    </option>
+                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
+
+
+
 
 
 

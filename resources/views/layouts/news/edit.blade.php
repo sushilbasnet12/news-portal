@@ -28,7 +28,7 @@
                             <br>
 
                             <label>Description</label>
-                            <input type="text" name="description" class="form-control" rows="3"
+                            <input type="text" name="description" class="form-control"
                                 value="{{ $news->description }}">
                             <br>
 
@@ -40,10 +40,13 @@
                             <select
                                 style="width: 100%;padding: 8px;background:rgb(241, 241, 241);border: solid 1px rgb(255, 255, 255);"
                                 name="category_id" id="">
-                                <option value="1">Politics</option>
-                                <option value="2">Entertainment</option>
-                                <option value="3">Sports</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        @if ($news->category_id == $category->id) selected @endif>{{ $category->category_name }}
+                                    </option>
+                                @endforeach
                             </select>
+
                             <br><br>
 
                             <button type="submit" class="btn btn-dark">Submit</button>

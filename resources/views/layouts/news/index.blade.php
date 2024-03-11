@@ -40,12 +40,12 @@
             <tbody>
                 @foreach ($news as $i => $article)
                     <tr>
-                        <td>{{ $i + 1 }}</td>
+                        <td>{{ $i + 1 }} </td>
                         <td>{{ $article->title }}</td>
-                        <td>{{ $article->description }}</td>
+                        <td>{{ $article->description }} </td>
                         <td><img src="{{ $article->getFirstMediaUrl('news') }}" class="square" width="50"
                                 height="40" alt="Image" width="100"></td>
-                        <td></td>
+                        <td>{{ $article->category->category_name ?? '' }}</td>
                         <td>
                             <a href="{{ route('news.edit', $article->id) }}" class="btn btn-primary">Edit</a>
                             <form action="{{ route('news.destroy', $article->id) }}" method="post"

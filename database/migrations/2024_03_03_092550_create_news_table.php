@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->string('image');
-            $table->unsignedBigInteger('category_id')->nullable();
+            $table->string('image')->nullable();
+            $table->foreignId('category_id')->constrained();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories'); //

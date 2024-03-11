@@ -16,6 +16,6 @@ class Category extends Model implements HasMedia
 
     public function news()
     {
-        return $this->hasMany(News::class, "category_id");
+        return $this->hasMany(News::class, 'category_id');
     }
 }

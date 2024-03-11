@@ -69,7 +69,7 @@ class CategoryController extends Controller
             $category->addMediaFromRequest('image')->toMediaCollection('categories');
         }
 
-        return redirect()->route('category.index'); //Flash Message        
+        return redirect()->route('category.index');
     }
 
     public function destroy($id)
@@ -81,8 +81,12 @@ class CategoryController extends Controller
             $media->delete();
         });
 
+        // Delete associated news records
+        $category->news()->delete();
+
         // Delete the category
         $category->delete();
+
         return back()->with('success', 'Category Deleted !!!');
     }
 }

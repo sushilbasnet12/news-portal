@@ -10,15 +10,14 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::all();
-        return view("layouts.news.index", ['news' => $news]);
+        return view("layouts.news.index",  ["news" => News::with('category')->get()]);
     }
 
     public function create()
     {
-        $categories = Category::all();
-        $news = new News(); // Create a new instance of the News model
-        return view("layouts.news.create", compact('categories', 'news'));
+        return view("layouts.news.create", [
+            "categories" => Category::all(),
+        ]);
     }
 
 
@@ -48,8 +47,10 @@ class NewsController extends Controller
     public function edit($id)
     {
         $news = News::findOrFail($id);
-        return view('layouts.news.edit', compact('news'));
+        $categories = Category::all();
+        return view('layouts.news.edit', compact('news', 'categories'));
     }
+
 
     public function update(Request $request, $id)
     {

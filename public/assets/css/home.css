@@ -27,3 +27,13 @@
 .container-two {
     margin-top: 50px;
 }
+
+.container-three {
+    text-align: left;
+    margin-top: 100px;
+    margin-left: 30px;
+}
+
+.larger-emoji {
+    font-size: 24px;
+}
