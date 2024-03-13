@@ -25,3 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('category', CategoryController::class);
 
 Route::resource('news', NewsController::class);
+
+Route::get('/', [WelcomeController::class, 'index']);
