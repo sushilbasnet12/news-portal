@@ -37,3 +37,8 @@
 .larger-emoji {
     font-size: 24px;
 }
+
+#category button {
+    margin-inline-start: 800px !important;
+    width: 100px !important;
+}
