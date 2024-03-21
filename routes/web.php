@@ -22,8 +22,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('category', CategoryController::class);
+Route::resource('categories', CategoryController::class);
 
 Route::resource('news', NewsController::class);
 
 Route::get('/', [WelcomeController::class, 'index']);
+
+Route::get('category/{slug}', [WelcomeController::class, 'category'])->name('category');
+
+Route::get('news-details/{slug}', [WelcomeController::class, 'newsDetails'])->name('news-details');

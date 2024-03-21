@@ -20,4 +20,10 @@ class WelcomeController extends Controller
 
         return view('welcome', compact('latestNews', 'categories'));
     }
+
+    public function category($slug)
+    {
+        $category = Category::where('slug', $slug)->firstOrFail();
+        return view('front.category', compact('category'));
+    }
 }

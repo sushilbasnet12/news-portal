@@ -18,9 +18,8 @@ class CategoryController extends Controller
         return view("layouts.category.create");
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::findOrFail($id);
         return view('layouts.category.edit', compact('category'));
     }
 
@@ -44,20 +43,18 @@ class CategoryController extends Controller
         // Handling Image with Spatie MediaLibrary
         $category->addMediaFromRequest('image')->toMediaCollection('categories');
 
-        return redirect()->route('category.index'); //flash message
-
+        return redirect()->route('categories.index');
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //Validate Data
+        // Validate Data
         $request->validate([
             'category_name' => 'required',
             'description' => 'required',
             'image' => 'nullable|mimes:jpeg,jpg,png,gif|max:1000'
         ]);
 
-        $category = Category::findOrFail($id);
         $category->category_name = $request->category_name;
         $category->description = $request->description;
         $category->save();
@@ -69,7 +66,7 @@ class CategoryController extends Controller
             $category->addMediaFromRequest('image')->toMediaCollection('categories');
         }
 
-        return redirect()->route('category.index');
+        return redirect()->route('categories.index');
     }
 
     public function destroy($id)

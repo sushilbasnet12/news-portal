@@ -19,7 +19,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-8 mt-5">
                 <div class="card p-3">
-                    <form method="POST" action="{{ route('category.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('categories.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label> Category Name </label>
@@ -35,7 +35,7 @@
 
                             <button type="submit" class="btn btn-dark">Submit</button>
 
-                            <a href="{{ route('category.index') }}" class="btn btn-danger">Cancel</a>
+                            <a href="{{ route('categories.index') }}" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>
                 </div>

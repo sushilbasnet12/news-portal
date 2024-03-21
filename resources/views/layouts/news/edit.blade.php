@@ -28,7 +28,7 @@
                             <br>
 
                             <label>Description</label>
-                            <input type="text" name="description" class="form-control"
+                            <input type="text" name="description" class="form-control".
                                 value="{{ $news->description }}">
                             <br>
 

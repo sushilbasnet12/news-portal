@@ -43,14 +43,6 @@
                                 @endforeach
                             </select>
 
-
-
-
-
-
-
-
-
                             <button type="submit" class="btn btn-dark">Submit</button>
 
                             <a href="{{ route('news.index') }}" class="btn btn-danger">Cancel</a>

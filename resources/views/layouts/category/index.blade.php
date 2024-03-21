@@ -16,13 +16,13 @@
 
 <body>
     <div class="sidenav">
-        <a href="{{ route('category.index') }}">Category</a>
+        <a href="{{ route('categories.index') }}">Category</a>
         <a href="{{ route('news.index') }}">News</a>
     </div>
 
     <div class="container-one">
         <div class="text-right">
-            <a href="{{ route('category.create') }}" class="btn btn-success mt-3">Add News </a>
+            <a href="{{ route('categories.create') }}" class="btn btn-success mt-3">Add News </a>
         </div>
 
         <table class="table mt-1 ms-5">
@@ -45,9 +45,8 @@
                         <td><img src="{{ $category->getFirstMediaUrl('categories') }}" class="square" width="50"
                                 height="40" alt="Category Image" width="100"></td>
                         <td>
-                            <!-- Add your action buttons here, e.g., edit and delete -->
-                            <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary">Edit</a>
-                            <form action="{{ route('category.destroy', $category->id) }}" method="post"
+                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('categories.destroy', $category->id) }}" method="post"
                                 style="display:inline;">
                                 @csrf
                                 @method('DELETE')

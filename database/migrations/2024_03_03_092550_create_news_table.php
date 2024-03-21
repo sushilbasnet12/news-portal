@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('description');
             $table->string('image')->nullable();
-            $table->foreignId('category_id')->constrained();
+            $table->unsignedBigInteger('category_id')->constrained();
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories'); //
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

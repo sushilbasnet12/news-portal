@@ -14,7 +14,7 @@
 
 <body>
     <div class="sidenav">
-        <a href="{{ route('category.index') }}">Category</a>
+        <a href="{{ route('categories.index') }}">Category</a>
         <a href="{{ route('news.index') }}">News</a>
     </div>
 </body>
