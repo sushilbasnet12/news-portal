@@ -10,7 +10,6 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-
     <div class="collapse navbar-collapse text-color" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-5">
             @foreach ($categories as $category)

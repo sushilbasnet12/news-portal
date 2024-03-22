@@ -4,16 +4,18 @@
     <div class="container-fluid mt-3">
         <div class="row gx-5">
             <div class="col-md-8">
-                {{-- Display only recently added news on big screen --}}
+                {{-- Display only breaking news --}}
                 @foreach ($latestNews->take(1) as $article)
                     <div class="card mb-4">
+                        <div class="newstime col-2 ms-auto">
+                            <time>{{ $article->created_at->diffForHumans() }}</time>
+                        </div>
                         <div class="card-body">
-                            <p class="card-text" style="max-height: 100px; overflow: hidden;">
-                                {{ $article->description }}</p>
-                            <a href="#">
+                            <a href="{{ route('news-details', $article->slug) }}">
                                 <img src="{{ $article->getFirstMediaUrl('news') }}" class="card-img-top" alt="News Image">
                             </a>
                         </div>
+                        <h2>{{ $article->title }}</h2>
                     </div>
                 @endforeach
 
@@ -32,14 +34,16 @@
                                         @foreach ($category->news as $article)
                                             <div class="col-md-4">
                                                 <div class="card mb-4">
+                                                    <div class="newstime col-5 ms-auto">
+                                                        <time>{{ $article->created_at->diffForHumans() }}</time>
+                                                    </div>
                                                     <div class="card-body">
-                                                        <p class="card-text" style="max-height: 100px; overflow: hidden;">
-                                                            {{ $article->description }}</p>
-                                                        <a href="#">
+                                                        <a href="{{ route('news-details', $article->slug) }}">
                                                             <img src="{{ $article->getFirstMediaUrl('news') }}"
-                                                                class="card-img-top" alt="News Image">
+                                                                class="card-img-bottom" alt="News Image">
                                                         </a>
                                                     </div>
+                                                    <h6>{{ $article->title }}</h6>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -57,14 +61,16 @@
                 <div class="col-md-8">
                     @foreach ($latestNews->slice(1) as $article)
                         <div class="card mb-4">
+                            <div class="newstime col-5 ms-auto">
+                                <time>{{ $article->created_at->diffForHumans() }}</time>
+                            </div>
                             <div class="card-body">
-                                <p class="card-text" style="max-height: 100px; overflow: hidden;">
-                                    {{ $article->description }}</p>
-                                <a href="#">
-                                    <img src="{{ $article->getFirstMediaUrl('news') }}" class="card-img-top"
+                                <a href="{{ route('news-details', $article->slug) }}">
+                                    <img src="{{ $article->getFirstMediaUrl('news') }}" class="card-img-latest"
                                         alt="News Image">
                                 </a>
                             </div>
+                            <h6>{{ $article->title }}</h6>
                         </div>
                     @endforeach
                 </div>

@@ -34,7 +34,6 @@
                             <br>
 
                             <label>Category</label>
-                            <label>Category</label>
                             <select
                                 style="width: 100%;padding: 8px;background:rgb(241, 241, 241);border: solid 1px rgb(255, 255, 255);"
                                 name="category_id" id="">

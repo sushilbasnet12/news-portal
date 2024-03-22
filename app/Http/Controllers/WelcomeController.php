@@ -26,4 +26,10 @@ class WelcomeController extends Controller
         $category = Category::where('slug', $slug)->firstOrFail();
         return view('front.category', compact('category'));
     }
+
+    public function newsDetails($slug)
+    {
+        $news = News::where('slug', $slug)->firstOrFail();
+        return view('front.news-details', compact('news'));
+    }
 }

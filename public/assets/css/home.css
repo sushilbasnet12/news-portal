@@ -17,6 +17,24 @@
     display: block;
 }
 
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table th,
+.table td {
+    max-width: 200px;
+    word-wrap: break-word;
+}
+
+.table img {
+    max-width: 100%;
+    height: auto;
+}
+
 .container-one {
     text-align: center;
     margin: 0 20px;
@@ -41,4 +59,22 @@
 #category button {
     margin-inline-start: 800px !important;
     width: 100px !important;
+}
+
+.card-img-top {
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-img-bottom {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-img-latest {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
 }
