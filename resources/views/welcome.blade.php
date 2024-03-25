@@ -1,14 +1,14 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container-fluid mt-3">
+    <div class="container mt-3">
         <div class="row gx-5">
             <div class="col-md-8">
                 {{-- Display only breaking news --}}
                 @foreach ($latestNews->take(1) as $article)
                     <div class="card mb-4">
                         <div class="newstime col-2 ms-auto">
-                            <time>{{ $article->created_at->diffForHumans() }}</time>
+                            <time>{{ $article->created_at->diffForHumans() }}</time> {{-- //relative time information for news --}}
                         </div>
                         <div class="card-body">
                             <a href="{{ route('news-details', $article->slug) }}">
