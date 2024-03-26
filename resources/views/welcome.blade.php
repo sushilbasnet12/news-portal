@@ -58,7 +58,7 @@
             {{-- Display the rest of the latest news --}}
             <div class="col-md-4">
                 <h2>Latest News</h2>
-                <div class="col-md-8">
+                <div class="col-md-10">
                     @foreach ($latestNews->slice(1) as $article)
                         <div class="card mb-4">
                             <div class="newstime col-5 ms-auto">

@@ -19,5 +19,5 @@
         </div>
     </div>
 
-    <a class="nav-item nav-link text-light ms-0 me-5" style="font-size: 24px;" href="{{ route('home') }}">🏠</a>
+    <a class="me-5" style="font-size: 24px;" href="{{ route('home') }}">🏠</a>
 </nav>

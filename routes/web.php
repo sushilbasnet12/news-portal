@@ -21,19 +21,12 @@ Route::get('/', [WelcomeController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::resource('categories', CategoryController::class);
-
-Route::resource('news', NewsController::class);
-
-Route::get('/', [WelcomeController::class, 'index']);
-
 Route::get('category/{slug}', [WelcomeController::class, 'category'])->name('category');
 
 Route::get('news-details/{slug}', [WelcomeController::class, 'newsDetails'])->name('news-details');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('categories', CategoryController::class);
     Route::resource('news', NewsController::class);
 });
