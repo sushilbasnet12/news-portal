@@ -1,8 +1,18 @@
-<div class="image">
+<div class="image ms-4">
     <a href="/">
         <img src="{{ asset('images/logo.png') }}" alt="Logo" height="50px" class="mt-4">
     </a>
+    <div class="dateandtime ms-4">
+        <p>
+            <span style="color: rgb(0, 0, 255)">{{ \Carbon\Carbon::now()->format('l') }},</span>
+            <span style="color: rgb(255, 0, 0)">{{ \Carbon\Carbon::now()->format('F d') }},</span>
+            <span style="color: rgb(0, 0, 255)">{{ \Carbon\Carbon::now()->format('Y') }}</span>
+        </p>
+
+    </div>
 </div>
+
+
 
 <nav class="navbar navbar-expand-lg bg-primary mt-4">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"

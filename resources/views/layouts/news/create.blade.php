@@ -8,14 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <title>Document</title>
+
+    <!-- include libraries(jQuery, bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <title>Create News</title>
 </head>
 
 <body>
-    <div class="container-two">
+    <div class="container mt-3">
         <div class="row justify-content-center">
             <div class="col-sm-8 mt-5">
                 <div class="card p-3">
@@ -24,9 +29,9 @@
                         <div class="form-group">
                             <label>Title</label>
                             <input type="text" name="title" class="form-control">
-                            <br>
+
                             <label>Description</label>
-                            <input type="text" name="description" class="form-control" rows="3">
+                            <textarea name="description" class="form-control" id="summernote"></textarea>
                             <br>
 
                             <label>Image</label>
@@ -41,6 +46,7 @@
                                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
+                            <br><br>
 
                             <button type="submit" class="btn btn-dark">Submit</button>
 
@@ -51,6 +57,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 150,
+
+            });
+        });
+    </script>
 </body>
 
 </html>
