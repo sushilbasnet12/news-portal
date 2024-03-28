@@ -5,7 +5,7 @@
             <div class="col-9">
                 <h5>{{ $news->title }}</h5>
                 <img src="{{ $news->getFirstMediaUrl('news') }}" class="news-img" alt="{{ $news->title }}">
-                <p>{{ $news->description }}</p>
+                <p>{!! $news->description !!}</p>
             </div>
         </div>
     </div>

@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Middleware\CustomMiddleware;
+use App\Http\Controllers\GoogleAuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,3 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('news', NewsController::class);
 });
+
+// Google
+Route::get('auth/google', [GoogleAuthController::class, 'redirect']);
+
+Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);

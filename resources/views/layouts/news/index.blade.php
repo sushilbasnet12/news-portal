@@ -42,7 +42,7 @@
                         <tr>
                             <td>{{ $i + 1 }} </td>
                             <td>{{ $article->title }}</td>
-                            <td>{{ $article->description }} </td>
+                            <td>{!! $article->description !!} </td>
                             <td><img src="{{ $article->getFirstMediaUrl('news') }}" class="square" width="50"
                                     height="40" alt="Image" width="100"></td>
                             <td>{{ $article->category->category_name ?? '' }}</td>
