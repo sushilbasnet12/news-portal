@@ -9,13 +9,13 @@
             <span style="color: rgb(0, 0, 255)">{{ \Carbon\Carbon::now()->format('Y') }}</span>
         </p>
     </div>
-    <div class="top-right p-4">
-        <form class="form-inline d-flex">
-            <input class="form-control form-control-sm mr-sm-2" style="max-width: 300px;" type="search" name="query"
-                placeholder="Search News">
-            <button class="btn btn-outline-primary btn-sm ms-2 my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
+
+    <form action="{{ route('news.search') }}" method="POST" class="top-right p-4">
+        @csrf
+        <input type="text" name="keyword" placeholder="Search News">
+        <button type="submit">Search</button>
+    </form>
+
 </div>
 
 <nav class="navbar navbar-expand-lg bg-primary mt-1">

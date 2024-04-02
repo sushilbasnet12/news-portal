@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="row">
                                         @foreach ($category->news as $article)
-                                            <div class="col-md-4">
+                                            <div class="col-md-5">
                                                 <div class="card mb-4">
                                                     <div class="newstime col-5 ms-auto">
                                                         <time>{{ $article->created_at->diffForHumans() }}</time>

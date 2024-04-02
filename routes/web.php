@@ -32,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('news', NewsController::class);
 });
 
-// //Google Signup
+Route::post('news/search', [NewsController::class, 'search'])->name('news.search');
+
+//Google Signup using Socialite
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle'])->name('google-callback');

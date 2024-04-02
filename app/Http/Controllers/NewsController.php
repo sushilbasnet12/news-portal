@@ -82,4 +82,16 @@ class NewsController extends Controller
         $news->delete();
         return back()->with('success', 'News Deleted !!!');
     }
+
+    public function search(Request $request)
+    {
+        // Get the keyword from the request
+        $keyword = $request->input('keyword');
+
+        // Search for news where the title contains the keyword
+        $news = News::where('title', 'like', '%' . $keyword . '%')->get();
+
+        // Return the search results along with the keyword to the view
+        return view('layouts.news.search', compact('news', 'keyword'));
+    }
 }
