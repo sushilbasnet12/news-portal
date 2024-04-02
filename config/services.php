@@ -14,6 +14,7 @@ return [
     |
     */
 
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
@@ -31,11 +32,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'gmail' => [
-        'client_id' => env('238824477841-k29dmvbbe143feguduu5nqfsdp16jq94.apps.googleusercontent.com '),
-        'client_secret' => env('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'),
-        'redirect' => env('http://127.0.0.1:8000/auth/google/call-back'),
-    ],
 
+    'google' => [
+        'client_id' => env('238824477841-k29dmvbbe143feguduu5nqfsdp16jq94.apps.googleusercontent.com'),
+        'client_secret' => env('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'),
+        'redirect' => 'http://127.0.0.1:8000/auth/google/call-back',
+    ],
 
 ];

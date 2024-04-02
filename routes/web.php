@@ -32,7 +32,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('news', NewsController::class);
 });
 
-// Google
-Route::get('auth/google', [GoogleAuthController::class, 'redirect']);
-
-Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
+// //Google Signup
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle'])->name('google-callback');

@@ -19,6 +19,11 @@ class NewsController extends Controller
             "categories" => Category::all(),
         ]);
     }
+    public function show($id)
+    {
+        $news = News::findOrFail($id);
+        return view('news.show', compact('news'));
+    }
 
     public function store(Request $request)
     {

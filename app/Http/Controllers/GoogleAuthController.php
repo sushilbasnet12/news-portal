@@ -3,42 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+use Laravel\Socialite\Facades\Socialite;
 
 class GoogleAuthController extends Controller
 {
     public function redirect()
     {
+        // redirect function which is responsible for redirecting the user to the Google Signup page.
         return Socialite::driver('google')->redirect();
     }
 
+    //handle the callback URL of Google authentication
     public function callbackGoogle()
     {
         try {
-            $user = Socialite::driver('google')->user();
-            Log::info('Google user info', ['user' => $user]);
-        } catch (\Exception $e) {
-            Log::error('Error during Google authentication: ' . $e->getMessage());
-            return redirect()->route('login')->withErrors('Authentication failed');
+            $google_user = Socialite::driver('google')->user();
+            $user = User::where('google_id', $google_user->getId())->first();
+
+            if (!$user) {
+
+                $new_user = User::create([
+                    'name' => $google_user->getName(),
+                    'email' => $google_user->getEmail(),
+                    'google_id' => $google_user->getId(),
+                ]);
+
+                Auth::login($new_user);
+
+                return redirect()->intended('home');
+            } else {
+                Auth::login($user);
+
+                return redirect()->intended('home');
+            }
+        } catch (\Throwable $th) {
+            // throw $th;
         }
-
-        $data = User::where('email', $user->email)->first();
-
-        if (!$data) {
-            $data = User::create([
-                'name' => $user->name,
-                'email' => $user->email,
-            ]);
-        }
-
-        if (!Auth::check()) {
-            Auth::login($data, true);
-            Log::info('User logged in with Google', ['email' => $user->email]);
-        }
-
-        return redirect('home');
     }
 }
