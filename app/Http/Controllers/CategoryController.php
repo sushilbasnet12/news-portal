@@ -20,7 +20,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('layouts.category.edit', compact('category'));
+        return view("layouts.category.edit", compact('category'));
     }
 
 

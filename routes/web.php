@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +33,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('news', NewsController::class);
 });
 
+//new search
 Route::post('news/search', [NewsController::class, 'search'])->name('news.search');
 
 //Google Signup using Socialite
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle'])->name('google-callback');
+
+//datatables
+Route::get('blog', [BlogController::class, 'index']);
+Route::get('blog/list', [BlogController::class, 'getBlog'])->name('blog.list');

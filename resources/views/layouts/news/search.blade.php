@@ -18,10 +18,4 @@
             @endforeach
         </div>
     </div>
-
-    @if ($news->count() == 0)
-        <div class="container">
-            <p>No results found for '{{ $keyword }}'</p>
-        </div>
-    @endif
 @endsection
