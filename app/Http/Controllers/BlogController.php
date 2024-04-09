@@ -10,22 +10,22 @@ class BlogController extends Controller
 {
     public function index()
     {
-        return view('home', compact('blogs'));
+
+        return view('home', compact('home'));
     }
 
     public function getBlog(Request $request)
     {
+        // Check if the request is an AJAX request
         if ($request->ajax()) {
+            // Fetch the latest blog data from the database
             $data = Blog::latest()->get();
 
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="javascript:void(0);" class="edit btn btn-primary btn-sm">Edit</a> <a href="javascript:void(0);" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+            // Process the data using DataTables and add an index column
+            $dataTable = DataTables::of($data)->addIndexColumn();
+
+            // Return the processed DataTables response
+            return $dataTable->make(true);
         }
     }
 }

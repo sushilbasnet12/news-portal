@@ -78,8 +78,7 @@
                         <p class="" style="text-align: center;">Or</p>
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <a href="{{ route('google-auth') }}" class="btn btn-success"
-                                    style="text-decoration: none; color: white;">
+                                <a href="" class="btn btn-success" style="text-decoration: none; color: white;">
                                     <i class="fab fa-google" style="margin-right: 8px;"></i>
                                     Continue with Google
                                 </a>

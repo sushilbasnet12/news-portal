@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Category;
+use App\Models\Blog;
+
 
 class NewsController extends Controller
 {
     public function index()
     {
-        return view("layouts.news.index",  ["news" => News::with('category')->get()]);
+        $news = News::all();
+        $blogs = Blog::all();
+        return view("layouts.news.index",  compact('news', 'blogs'));
     }
 
     public function create()

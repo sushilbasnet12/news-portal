@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Blog;
+
 
 class CategoryController extends Controller
 {
     public function index()
     {
         $categories = Category::all();
-        return view("layouts.category.index", compact('categories'));
+        $blogs = Blog::all();
+        return view("layouts.category.index", compact('categories', 'blogs'));
     }
+
 
     public function create()
     {

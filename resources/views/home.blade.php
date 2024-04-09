@@ -41,7 +41,8 @@
                     <th>Title</th>
                     <th>Slug</th>
                     <th>Keywords</th>
-                    <th>Action</th>
+                    <th>Descriptions</th>
+                    <th>Content</th>
                 </tr>
             </thead>
         </table>
@@ -57,7 +58,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
 
     <!-- Bootstrap Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> --}}
 
     <!-- DataTables Bootstrap 4 Integration -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
@@ -85,16 +86,19 @@
                         name: 'keywords'
                     },
                     {
-                        data: 'action',
-                        name: 'action',
+                        data: 'description',
+                        name: 'description'
+                    },
+                    {
+                        data: 'content',
+                        name: 'content',
                         orderable: true,
                         searchable: true
-                    }
+                    },
                 ]
             });
         });
     </script>
-
 </body>
 
 </html>
