@@ -24,8 +24,6 @@
 
     <!-- DataTables Bootstrap 4 Integration CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.css">
-
-
     <title>Home</title>
 </head>
 
@@ -34,6 +32,7 @@
         <a href="{{ route('categories.index') }}">Category</a>
         <a href="{{ route('news.index') }}">News</a>
     </div>
+
     <div class="container mt-5">
         <h2 class="mb-5"> Laravel DataTables </h2>
         <table class="table table-bordered yajra-datatables">
@@ -42,9 +41,9 @@
                     <th>No.</th>
                     <th>Title</th>
                     <th>Slug</th>
-                    <th>Keywords</th>
                     <th>Descriptions</th>
-                    <th>Content</th>
+                    <th>Image</th>
+                    <th>Action</th>
                 </tr>
             </thead>
         </table>
@@ -70,7 +69,7 @@
             var table = $('.yajra-datatables').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('blog.list') }}",
+                ajax: "{{ route('news.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
@@ -84,16 +83,16 @@
                         name: 'slug'
                     },
                     {
-                        data: 'keywords',
-                        name: 'keywords'
-                    },
-                    {
                         data: 'description',
                         name: 'description'
                     },
                     {
-                        data: 'content',
-                        name: 'content',
+                        data: 'image',
+                        name: 'image'
+                    },
+                    {
+                        data: 'Action',
+                        name: 'Action',
                         orderable: true,
                         searchable: true
                     },
@@ -101,6 +100,5 @@
             });
         });
     </script>
-</body>
 
 </html>

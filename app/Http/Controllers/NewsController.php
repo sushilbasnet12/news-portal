@@ -6,16 +6,34 @@ use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Category;
 use App\Models\Blog;
+use DataTables;
 
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $news = News::all();
         $blogs = Blog::all();
-        return view("layouts.news.index",  compact('news', 'blogs'));
+
+        if ($request->ajax()) {
+            $data = News::latest()->get(); // Fetch the latest news data
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('image', function ($row) {
+
+                    //Using Spatie Media Library
+                    $imageUrl = $row->getFirstMediaUrl('news');
+                    return '<img src="' . $imageUrl . '" width="50" height="50">';
+                })
+                ->rawColumns(['image'])
+                ->make(true);
+        }
+
+        return view("layouts.news.index", compact('news', 'blogs'));
     }
+
 
     public function create()
     {
@@ -57,7 +75,6 @@ class NewsController extends Controller
         $categories = Category::all();
         return view('layouts.news.edit', compact('news', 'categories'));
     }
-
 
     public function update(Request $request, $id)
     {

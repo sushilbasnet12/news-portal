@@ -5,17 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use DataTables;
 
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
         $categories = Category::all();
         $blogs = Blog::all();
+
+        if ($request->ajax()) {
+            $data = Category::latest()->get(); // Fetch the latest category data
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('image', function ($row) {
+
+                    // Using Spatie Media Library:
+                    $imageUrl = $row->getFirstMediaUrl('categories');
+                    return '<img src="' . $imageUrl . '" width="50" height="50">';
+                })
+                ->rawColumns(['image'])
+                ->make(true);
+        }
+
         return view("layouts.category.index", compact('categories', 'blogs'));
     }
-
 
     public function create()
     {

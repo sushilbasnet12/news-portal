@@ -33,7 +33,6 @@
         <a href="{{ route('news.index') }}">News</a>
     </div>
 
-
     <div class="container mt-5">
         <h2 class="mb-5"> Laravel DataTables </h2>
         <table class="table table-bordered yajra-datatables">
@@ -42,9 +41,10 @@
                     <th>No.</th>
                     <th>Title</th>
                     <th>Slug</th>
-                    <th>Keywords</th>
                     <th>Descriptions</th>
-                    <th>Content</th>
+                    <th>Image</th>
+                    <th>Action</th>
+
                 </tr>
             </thead>
         </table>
@@ -70,13 +70,13 @@
             var table = $('.yajra-datatables').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('blog.list') }}",
+                ajax: "{{ route('categories.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'title',
+                        data: 'category_name',
                         name: 'title'
                     },
                     {
@@ -84,16 +84,16 @@
                         name: 'slug'
                     },
                     {
-                        data: 'keywords',
-                        name: 'keywords'
-                    },
-                    {
                         data: 'description',
                         name: 'description'
                     },
                     {
-                        data: 'content',
-                        name: 'content',
+                        data: 'image',
+                        name: 'image'
+                    },
+                    {
+                        data: 'Action',
+                        name: 'Action',
                         orderable: true,
                         searchable: true
                     },
@@ -101,25 +101,5 @@
             });
         });
     </script>
-
-    {{-- @foreach ($blogs as $i => $blog)
-        <tr>
-            <td>{{ $i + 1 }}</td>
-            <td>{{ $blog->title }}</td>
-            <td>{{ $blog->slug }}</td>
-            <td>{{ $blog->keywords }}</td>
-            <td>{{ $blog->description }}</td>
-            <td><img src="{{ $blog->getFirstMediaUrl('blogs') }}" class="square" width="50" height="40"
-                    alt="Category Image" width="100"></td>
-            <td>
-                <a href="" class="btn btn-primary">Edit</a>
-                <form style="display:inline;">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-    @endforeach --}}
-</body>
 
 </html>
