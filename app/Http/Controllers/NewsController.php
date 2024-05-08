@@ -13,8 +13,8 @@ class NewsController extends Controller
 {
     public function index(Request $request)
     {
-        $news = News::all();
-        $blogs = Blog::all();
+        /*  $news = News::all();
+        $blogs = Blog::all(); */
 
         if ($request->ajax()) {
             $data = News::latest()->get(); // Fetch the latest news data
@@ -31,7 +31,7 @@ class NewsController extends Controller
                 ->make(true);
         }
 
-        return view("layouts.news.index", compact('news', 'blogs'));
+        // return view("layouts.news.index", compact('news', 'blogs'));
     }
 
 

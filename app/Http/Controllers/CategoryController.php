@@ -13,8 +13,8 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
 
-        $categories = Category::all();
-        $blogs = Blog::all();
+        /*  $categories = Category::all();
+        $blogs = Blog::all(); */
 
         if ($request->ajax()) {
             $data = Category::latest()->get(); // Fetch the latest category data
@@ -31,7 +31,7 @@ class CategoryController extends Controller
                 ->make(true);
         }
 
-        return view("layouts.category.index", compact('categories', 'blogs'));
+        // return view("layouts.category.index", compact('categories', 'blogs'));
     }
 
     public function create()
