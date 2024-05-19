@@ -4,46 +4,48 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\NewsResource\Pages;
 use App\Filament\Resources\NewsResource\RelationManagers;
+use App\Models\Category;
 use App\Models\News;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class NewsResource extends Resource
 {
     protected static ?string $model = News::class;
 
-    // protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-collection';
+
+    protected static ?string $navigationGroup = 'Create News';
 
     public static function form(Form $form): Form
     {
+        $categories = Category::pluck('category_name', 'id');
+
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')->required(),
-                Forms\Components\TextInput::make('slug'),
-                Forms\Components\Textarea::make('Description')
+                Forms\Components\TextInput::make('title')
+                    ->required(),
+
+                Forms\Components\Textarea::make('description')
                     ->required()
                     ->rows(2),
 
-                Forms\Components\FileUpload::make('Image')
+                Forms\Components\FileUpload::make('image')
                     ->required()
-                    ->image() // This restricts the file upload to images only
-                    ->disk('public') // Specify the disk where the files should be stored
-                    ->directory('images'), // Specify the directory in the disk
-                Forms\Components\Select::make('Category')
-                    ->required()
-                    ->options([
-                        'option 1' => 'Politics',
-                        'option 2' => 'Education',
-                        'option 3' => 'Science',
-                    ]),
+                    ->image()
+                    ->disk('public')
+                    ->directory('images'),
 
+                Forms\Components\Select::make('category_id')
+                    ->label('Category')
+                    ->required()
+                    ->options($categories),
             ]);
     }
+
 
 
     public static function table(Table $table): Table
@@ -54,11 +56,12 @@ class NewsResource extends Resource
                 Tables\Columns\TextColumn::make('title')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('slug')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\ImageColumn::make('Category'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->disk('public')
+                    ->label('Image'),
             ])
             ->filters([
-                //
+                // Add any necessary filters here
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -71,9 +74,7 @@ class NewsResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

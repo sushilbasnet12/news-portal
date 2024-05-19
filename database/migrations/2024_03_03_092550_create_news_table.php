@@ -18,9 +18,8 @@ return new class extends Migration
             $table->string('description');
             $table->string('image')->nullable();
             $table->unsignedBigInteger('category_id')->constrained();
-            $table->timestamps();
-
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->timestamps();
         });
     }
 

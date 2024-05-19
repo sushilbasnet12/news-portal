@@ -3,26 +3,33 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
+    public function run()
     {
-        $faker = Faker::create();
+        // Create Admin user
+        $admin = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('Admin@123'),
+        ]);
 
-        foreach (range(1, 200) as $key => $value) {
-            DB::table('blogs')->insert([
-                'title' => $faker->text(),
-                'slug' => $faker->slug(),
-                'keywords' => $faker->text(),
-                'description' => $faker->text(),
-                'content' => $faker->paragraph(),
-            ]);
-        }
+        // Create user
+        $user = User::create([
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'password' => bcrypt('Admin@123'),
+        ]);
+
+        // Create roles
+        $adminRole = Role::create(['name' => 'Admin']);
+        $userRole = Role::create(['name' => 'User']);
+
+        // Assign roles to users
+        $admin->assignRole($adminRole);
+        $user->assignRole($userRole);
     }
 }

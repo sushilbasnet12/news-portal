@@ -15,14 +15,20 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
     protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationGroup = 'Create News';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('Category Name')->required(),
-                Forms\Components\TextInput::make('Description')->required(),
-                Forms\Components\FileUpload::make('Image')
+                Forms\Components\TextInput::make('category_name')
+                    ->label('Category Name')
+                    ->required(),
+
+                Forms\Components\Textarea::make('description')
+                    ->required(),
+
+                Forms\Components\FileUpload::make('image')
                     ->required()
                     ->image()
                     ->disk('public')
@@ -35,16 +41,16 @@ class CategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
-                Tables\Columns\TextColumn::make('category_name')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('image')
-                    ->formatStateUsing(function ($state) {
-                        $imageUrl = $state ? asset('storage/' . $state) : asset('path_to_placeholder_image.jpg');
-                        return '<img src="' . $imageUrl . '" width="100" />';
-                    })
-                    ->html(),
+                Tables\Columns\TextColumn::make('category_name')
+                    ->label('Category Name')
+                    ->searchable()
+                    ->sortable(),
 
-                Tables\Columns\TextColumn::make('Action'),
+                Tables\Columns\TextColumn::make('description'),
+
+                Tables\Columns\ImageColumn::make('image')
+                    ->disk('public')
+                    ->label('Image'),
 
             ])
             ->filters([])

@@ -13,7 +13,7 @@ class News extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia, HasSlug;
     protected $primaryKey = 'id';
-    protected $fillable = ["title", "description", "image"];
+    protected $fillable = ["title", "slug", "description", "image"];
 
     public function category()
     {

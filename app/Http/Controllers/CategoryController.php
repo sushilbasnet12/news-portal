@@ -47,15 +47,14 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        //Validating data 
+        // Validating data 
         $request->validate([
             'category_name' => 'required',
             'description' => 'required',
             'image' => 'required|mimes:jpeg,jpg,png,gif|max:1000',
         ]);
 
-
-        //data stored.
+        // Create a new category instance
         $category = new Category();
         $category->category_name = $request->category_name;
         $category->description = $request->description;
@@ -66,6 +65,7 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index');
     }
+
 
     public function update(Request $request, Category $category)
     {

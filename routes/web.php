@@ -7,6 +7,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +28,11 @@ Route::get('category/{slug}', [WelcomeController::class, 'category'])->name('cat
 
 Route::get('news-details/{slug}', [WelcomeController::class, 'newsDetails'])->name('news-details');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('categories', CategoryController::class);
-    Route::resource('news', NewsController::class);
-});
+// Route::middleware(['auth'])->group(function () {
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('categories', CategoryController::class);
+Route::resource('news', NewsController::class);
+// });
 
 //new search
 Route::post('news/search', [NewsController::class, 'search'])->name('news.search');
